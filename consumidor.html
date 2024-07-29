@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste de Consumo</title>
+</head>
+<body>
+    <h1>Memory Leak Test Page</h1>
+    <p>This page will continuously consume memory to simulate a memory leak.</p>
+    <script>
+        const memoryLeakArray = [];
+        
+        function consumeMemory() {
+            const largeArray = new Array(1000000).fill('Memory Leak Test');
+            memoryLeakArray.push(largeArray);
+
+            if (performance.memory) {
+                console.log(`Used JS heap size: ${performance.memory.usedJSHeapSize / 1024 / 1024} MB`);
+            }
+
+            setTimeout(consumeMemory, 1000);
+        }
+        consumeMemory();
+    </script>
+</body>
+</html>
