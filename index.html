@@ -5,20 +5,21 @@
 </head>
 <body>
     <h1>Teste de memória RAM</h1>
-    <p>A página consumirá 500MB por segundo (Com 3GB a página deverá cair)</p>
+    <p>A página consumirá 300MB por segundo (Com 3GB a página deverá cair)</p>
+    
     <script>
-        const memoryLeakArray = [];
+        const consumir = [];
 
-        function consumeMemory() {
-            const largeArray = new Array(500 * 1024 * 1024).fill('M');
+        function consumirMemory() {
+            const intervaloDeConsumo = new Array(300 * 1024 * 1024).fill('M');
 
-            memoryLeakArray.push(largeArray);
+            consumir.push(intervaloDeConsumo);
 
             if (performance.memory) {
                 console.log(`Used JS heap size: ${performance.memory.usedJSHeapSize / 1024 / 1024} MB`);
             }
 
-            setTimeout(consumeMemory, 1000);
+            setTimeout(consumirMemory, 1000);
         }
 
         consumeMemory();
