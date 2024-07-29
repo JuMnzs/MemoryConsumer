@@ -20,12 +20,7 @@
 
             consumir.push(intervaloDeConsumo);
 
-            // Exibe o uso de memória no console
-            if (performance.memory) {
-                console.log(`Used JS heap size: ${performance.memory.usedJSHeapSize / 1024 / 1024} MB`);
-            }
 
-            // Continua consumindo memória a cada segundo
             setTimeout(consumirMemory, 1000);
         }
 
