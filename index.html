@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Teste de Memória RAM</title>
+    <title>Teste de memória RAM</title>
 </head>
 <body>
-    <h1>Teste de Memória RAM</h1>
-    <p>A página consumirá até 1.5GB de memória antes de parar.</p>
+    <h1>Teste de memória RAM</h1>
+    <p>A página consumirá 300MB por segundo (Com 3GB a página deverá cair)</p>
     <button onclick="startMemoryConsumption()">Iniciar Consumo de Memória</button>
 
     <script>
@@ -15,21 +15,12 @@
         function consumirMemory() {
             if (!memoryLeakActive) return;
 
+            // Cria um grande array para consumir aproximadamente 300MB de memória
             const intervaloDeConsumo = new Array(300 * 1024 * 1024).fill('M');
+
             consumir.push(intervaloDeConsumo);
 
-            if (window.performance && window.performance.memory) {
-                const memoria = window.performance.memory;
-                const memoriaUsada = memoria.usedJSHeapSize / (1024 * 1024);
-                const limite = 1500;
 
-                if (memoriaUsada > limite) {
-                    console.log("Memória usada excedeu 1.5GB. Parando consumo.");
-                    memoryLeakActive = false;
-                    consumir.length = 0; 
-                    return;
-                }
-            }
             setTimeout(consumirMemory, 1000);
         }
 
